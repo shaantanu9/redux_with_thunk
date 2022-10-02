@@ -1,2 +1,2 @@
-# redux_with_thunk
+# redux_basics
 Created with CodeSandbox
