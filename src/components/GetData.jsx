@@ -12,15 +12,17 @@ const GetData = () => {
   const [page, setPage] = useState(1);
 
   const { data } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   const getDataBookmark = () => {
+    console.log("GetDataFromSearch", searchTearm);
     dispatch(getDatafromURL(searchTearm));
   };
 
   useEffect(() => {
     dispatch(defaultFetchData(page));
-  }, [page]);
+  }, [page, dispatch]);
 
   console.log("Data from Store", data);
   return (
@@ -30,7 +32,7 @@ const GetData = () => {
       <br />
       <br />
       <button onClick={() => setPage((pre) => pre + 1)}>NextPage</button>
-      {data.map(({ _id, title, url, description, code }, i, arr) => (
+      {data?.map(({ _id, title, url, description, code }, i, arr) => (
         <div key={_id}>
           <h1>{title}</h1>
           <p>{url}</p>

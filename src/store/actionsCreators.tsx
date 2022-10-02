@@ -32,11 +32,15 @@ const getData = (data: object[]) => {
 
 const getDatafromURL = (searchTearm: string) => {
   return (dispatch: any) => {
-    fetch(`https://camel-bedclothes.cyclic.app/bookmarks`)
+    fetch(
+      `https://camel-bedclothes.cyclic.app/bookmarks/search?s=${searchTearm}`
+    )
       .then((res) => res.json())
       .then((res) => {
+        console.log(res, "res from Response");
         dispatch(getData(res));
-      });
+      })
+      .catch((err) => dispatch(getData([])));
   };
 };
 
